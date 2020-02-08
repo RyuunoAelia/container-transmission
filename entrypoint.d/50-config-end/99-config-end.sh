@@ -1,0 +1,3 @@
+cat <<EOF>> $TRANSMISSION_CONFIG
+}
+EOF
