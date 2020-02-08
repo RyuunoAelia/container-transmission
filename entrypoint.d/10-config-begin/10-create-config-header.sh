@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+if [ -z "${TRANSMISSION_RPC_HOST_WHITELIST}" ]; then
+  TRANSMISSION_WHITELIST_RCP=false
+else
+  TRANSMISSION_WHITELIST_RCP=true
+fi
+
 cat <<EOF >> $TRANSMISSION_CONFIG
 {
   "rpc-enabled": true,
@@ -14,5 +21,7 @@ cat <<EOF >> $TRANSMISSION_CONFIG
   "trash-original-torrent-files": true,
   "umask": ${TRAMISSION_UMASK:=12},
   "watch-dir": "/data/torrent-watch",
+  "rpc-host-whitelist": "${TRANSMISSION_RPC_HOST_WHITELIST}",
+  "rpc-host-whitelist-enabled": ${TRANSMISSION_WHITELIST_RCP},
   "watch-dir-enabled": true
 EOF
